@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import PictureCard from "./components/PictureCard";
 import Wrapper from "./components/Wrapper";
-// import Scores from "./components/Scores";
 import cards from "./cards.json";
 
 class App extends Component {
-  // Setting this.state.cards to the cards json array
   state = {
     cards,
     clickedArray: [],
@@ -16,30 +14,26 @@ class App extends Component {
     message: "CLICK an image to start! "
   };
   clickPicture = id => {
-    // Arrange the pictures in a random manner
     const shuffledArray = this.shuffleArray(cards);
     this.setState({ cards: shuffledArray });
-    // if clicked an image already clicked set this.state.score = 0; empty clickeadArray, end of if block
     if (this.state.clickedArray.includes(id)) {
       this.setState({
         score: 0,
         clickedArray: [],
-        message: "INCORRECT!! Game Over ☹️ Click an image to start again!",
+        message: "INCORRECT!! Game Over!! Click an image to start again!",
         shakeit: "true"
       });
     } else {
       this.setState({
         clickedArray: this.state.clickedArray.concat([id]),
         score: this.state.score + 1,
-        message: "CORRECT !! 🙂",
+        message: "CORRECT !!",
         shakeit: "false"
       });
     }
-    // set topscore = score if score>topscore.
     if (this.state.score > this.state.topScore) {
       this.setState({ topScore: this.state.score });
     }
-    // shake the wrapper if shakeit is set to true
   };
   shuffleArray = picturesArray => {
     for (let i = picturesArray.length - 1; i > 0; i--) {
@@ -55,14 +49,11 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1 className="App-title">Welcome to React CLICKY Game!!</h1>
+          <h1 className="App-title">Game of Clicks!!</h1>
         </header>
         <h3 className="App-intro">
-          <strong>
             CLICK on an image to earn points, but don't click on any, more than
             ONCE!
-          </strong>
           <p className="score">
             <strong>
               Score: {this.state.score} | TopScore: {this.state.topScore}
@@ -78,13 +69,17 @@ class App extends Component {
             <PictureCard
               clickPicture={this.clickPicture}
               id={picture.id}
-              key={picture.id} // to get rid of unique key prop warning
+              key={picture.id}
               name={picture.name}
               image={picture.image}
             />
           ))}
         />
-        
+          <footer className="footer">
+            <div className="container">
+              <span><a href="https://github.com/Zuprocj/clickygame" className="btn btn-dark text-white" target="_blank" rel="noopener noreferrer">GitHub Repo</a></span>
+            </div>
+          </footer>
       </div>
     );
   }
