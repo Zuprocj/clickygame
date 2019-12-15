@@ -77,7 +77,7 @@ class App extends Component {
         />
           <footer className="footer">
             <div className="container">
-              <span><a href="https://github.com/Zuprocj/clickygame/tree/gh-pages" className="btn btn-dark text-white" target="_blank" rel="noopener noreferrer">GitHub Repo</a></span>
+              <span><a href="https://github.com/Zuprocj/clickygame" className="btn btn-dark text-white" target="_blank" rel="noopener noreferrer">GitHub Repo</a></span>
             </div>
           </footer>
       </div>
